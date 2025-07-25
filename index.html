@@ -1,0 +1,1743 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">Português Expressivo - Aprenda Novas Expressões!</title>
+    <!-- Ícones para um toque visual, usando Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Estilos Globais e Tema Netflix */
+        :root {
+            --netflix-red: #E50914;
+            --netflix-dark: #141414;
+            --netflix-light-dark: #222222;
+            --text-color: #E5E5E5;
+            --accent-gray: #A0A0A0;
+            --border-radius: 8px;
+            --padding-base: 1.5rem;
+        }
+
+        body {
+            font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--netflix-dark);
+            color: var(--text-color);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow-x: hidden;
+            background: linear-gradient(to bottom, var(--netflix-dark) 0%, var(--netflix-light-dark) 100%);
+        }
+
+        /* Cabeçalho */
+        .main-header {
+            background-color: var(--netflix-dark);
+            padding: 1.5rem var(--padding-base);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            border-bottom: 2px solid var(--netflix-red);
+        }
+
+        .site-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--netflix-red);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+            margin: 0;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .site-title i {
+            font-size: 0.8em;
+            color: var(--text-color);
+        }
+
+        .site-tagline {
+            margin-top: 0.8rem;
+            font-size: 1.3rem;
+            opacity: 0.9;
+            font-weight: 300;
+            color: var(--accent-gray);
+        }
+
+        /* Language Selector */
+        .language-selector {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            display: flex;
+            gap: 5px;
+        }
+
+        .lang-button {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            padding: 0.5rem 0.8rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .lang-button:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .lang-button.active {
+            background-color: white;
+            color: var(--netflix-red);
+            border-color: white;
+        }
+
+        /* Área de conteúdo principal */
+        .content-area {
+            flex-grow: 1;
+            max-width: 900px;
+            margin: 2rem auto;
+            background-color: var(--netflix-light-dark);
+            border-radius: var(--border-radius);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
+            padding: var(--padding-base) 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Estilos para as seções (introdução, detalhe, prática) */
+        .section {
+            padding: 1.5rem;
+            transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
+            position: absolute;
+            width: calc(100% - 3rem);
+            top: 0;
+            left: 0;
+            height: 100%;
+            overflow-y: auto;
+            box-sizing: border-box;
+        }
+
+        .section.hidden {
+            opacity: 0;
+            transform: translateY(20px);
+            pointer-events: none;
+            display: none;
+        }
+
+        .section.active {
+            opacity: 1;
+            transform: translateY(0);
+            position: relative;
+            display: block;
+        }
+
+        /* Adicionada definição global para a classe .hidden */
+        .hidden {
+            display: none !important;
+        }
+
+        .section-title {
+            color: var(--netflix-red);
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            font-weight: 600;
+        }
+
+        .introduction-text {
+            margin-bottom: 2.5rem;
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--text-color);
+        }
+
+        /* Lista de botões de expressões */
+        .expression-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.2rem;
+            margin-bottom: 3rem;
+        }
+
+        .expression-btn {
+            background-color: var(--netflix-red);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: var(--border-radius);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .expression-btn:hover {
+            background-color: #CC0812;
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+        }
+
+        /* Botões de ação principais (ex: "Vamos praticar!") */
+        .main-action-btn {
+            display: block;
+            width: fit-content;
+            margin: 0 auto;
+            background-color: var(--netflix-red);
+            color: white;
+            border: none;
+            padding: 1.2rem 2.5rem;
+            border-radius: var(--border-radius);
+            font-size: 1.4rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .main-action-btn:hover {
+            background-color: #CC0812;
+            transform: translateY(-7px) scale(1.03);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
+
+        .main-action-btn i {
+            font-size: 1.2em;
+        }
+
+        /* Seção de Detalhe da Expressão */
+        .expression-card {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            background-color: var(--netflix-dark);
+            box-shadow: var(--shadow-light);
+        }
+
+        .expression-phrase {
+            color: var(--netflix-red);
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem; /* Ajustado para dar espaço para alternativas */
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .english-alternatives-container {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: var(--accent-gray);
+        }
+        .english-alternatives-container p.pt-equivalent-display {
+            font-size: 1.1rem;
+            font-style: italic;
+            margin-bottom: 0.5rem;
+        }
+        .english-alternatives-container strong {
+            color: var(--netflix-red);
+        }
+        .english-alternatives-container ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 0.5rem;
+            display: inline-block; /* Para centralizar a lista */
+            text-align: left; /* Para alinhar o texto da lista à esquerda */
+        }
+        .english-alternatives-container li {
+            margin-bottom: 0.2em;
+            font-size: 0.95rem;
+            color: var(--accent-gray);
+        }
+
+        .explanation-block, .example-block, .context-block {
+            margin-bottom: 1.8rem;
+        }
+
+        .explanation-block h4, .example-block h4, .context-block h4 {
+            color: var(--text-color);
+            margin-bottom: 0.8rem;
+            font-size: 1.4rem;
+            border-bottom: 2px solid var(--netflix-red);
+            padding-bottom: 5px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .explanation-block p, .context-block p {
+            font-size: 1.15rem;
+            color: var(--accent-gray);
+        }
+
+        .examples-list {
+            list-style: none;
+            padding-left: 0;
+            margin-left: 0;
+        }
+
+        .examples-list li {
+            background-color: #2a2a2a;
+            border-left: 4px solid var(--netflix-red);
+            padding: 10px 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            color: var(--text-color);
+        }
+
+        .examples-list li strong {
+            color: var(--netflix-red);
+        }
+        .examples-list li u {
+            text-decoration: underline;
+        }
+
+
+        /* Botões de navegação (Voltar, Próxima) */
+        .back-to-intro-btn, .next-expression-btn {
+            background: none;
+            border: none;
+            color: var(--netflix-red);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: color 0.3s ease, transform 0.2s ease;
+            padding: 0.8rem 1.2rem;
+            margin-top: 1.5rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-to-intro-btn:hover, .next-expression-btn:hover {
+            color: var(--text-color);
+            transform: translateY(-2px);
+        }
+
+        .back-to-intro-btn {
+            float: left;
+        }
+        .next-expression-btn {
+            float: right;
+        }
+
+        /* Seção de Prática */
+        .practice-instructions {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            font-size: 1.2rem;
+            color: var(--text-color);
+        }
+
+        .practice-questions-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .question-block {
+            background-color: var(--netflix-dark);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            box-shadow: var(--shadow-light);
+        }
+
+        .question-text {
+            font-size: 1.15rem;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+
+        .user-answer-input {
+            width: calc(100% - 24px);
+            padding: 0.9rem 10px;
+            margin-bottom: 1rem;
+            border: 1px solid #555;
+            border-radius: 8px;
+            background-color: #333;
+            color: var(--text-color);
+            font-size: 1.05rem;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .user-answer-input:focus {
+            border-color: var(--netflix-red);
+            box-shadow: 0 0 0 0.2rem rgba(229, 9, 20, 0.25);
+            outline: none;
+        }
+
+        .show-answer-btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .show-answer-btn:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        .show-answer-btn:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+
+        .correct-answer {
+            margin-top: 1rem;
+            font-weight: bold;
+            color: #76FF03;
+            font-size: 1.1rem;
+            background-color: #3a3a3a;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px dashed #76FF03;
+        }
+
+        .answer-feedback {
+            margin-top: 0.8rem;
+            font-style: italic;
+            font-size: 1rem;
+            padding: 5px 0;
+        }
+
+        .answer-feedback.correct {
+            color: #76FF03;
+        }
+
+        .answer-feedback.incorrect {
+            color: #dc3545;
+        }
+
+        /* New Exercise Type Navigation */
+        .exercise-type-selector {
+            text-align: center;
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .exercise-type-btn {
+            background-color: #555;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            font-weight: 600;
+        }
+
+        .exercise-type-btn:hover {
+            background-color: #777;
+            transform: translateY(-2px);
+        }
+
+        .exercise-type-btn.active {
+            background-color: var(--netflix-red);
+            color: white;
+        }
+
+        /* Translation Exercises */
+        .translation-exercise-block {
+            background-color: var(--netflix-dark);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow-light);
+        }
+        .translation-exercise-block .phrase-to-translate {
+            font-size: 1.15rem;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+            font-weight: bold;
+        }
+
+        /* Matching Exercises */
+        .matching-exercise-container {
+            display: flex;
+            justify-content: space-around;
+            gap: 20px;
+            margin-top: 20px;
+            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+        }
+
+        .matching-column {
+            flex: 1;
+            min-width: 280px; /* Ensure columns don't get too narrow */
+            background-color: #2a2a2a;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--border-radius);
+            padding: 1rem;
+            min-height: 250px;
+        }
+
+        .matching-item {
+            background-color: #444;
+            color: white;
+            padding: 10px 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            cursor: grab;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+            font-size: 1.05rem;
+            border: 1px solid #555;
+        }
+
+        .matching-item.dragging {
+            opacity: 0.6;
+            transform: scale(1.02);
+        }
+
+        .matching-target {
+            background-color: #333;
+            color: var(--text-color);
+            padding: 10px 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 2px dashed #666;
+            min-height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.05rem;
+            transition: border-color 0.2s ease, background-color 0.2s ease;
+        }
+
+        .matching-target.hovered {
+            border-color: var(--netflix-red);
+            background-color: #4a4a4a;
+        }
+
+        .matching-target.correct {
+            background-color: #4CAF50; /* Green */
+            border-color: #4CAF50;
+            color: white;
+        }
+
+        .matching-target.incorrect {
+            background-color: #f44336; /* Red */
+            border-color: #f44336;
+            color: white;
+        }
+
+        .matching-target .matched-item {
+            background-color: #666;
+            padding: 5px 10px;
+            border-radius: 3px;
+            font-size: 0.95rem;
+            color: white;
+        }
+
+        .matching-check-btn {
+            display: block;
+            width: fit-content;
+            margin: 1.5rem auto 0;
+            background-color: var(--netflix-red);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: var(--border-radius);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            font-weight: 600;
+        }
+
+        .matching-check-btn:hover {
+            background-color: #CC0812;
+            transform: translateY(-3px);
+        }
+
+        /* Rodapé */
+        .main-footer {
+            text-align: center;
+            padding: 1.5rem var(--padding-base);
+            background-color: var(--netflix-dark);
+            color: var(--accent-gray);
+            font-size: 0.9rem;
+            margin-top: auto;
+            border-top: 2px solid var(--netflix-red);
+            box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .main-footer p {
+            margin: 0.4rem 0;
+        }
+
+        .main-footer i {
+            color: var(--netflix-red);
+            margin: 0 5px;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .content-area {
+                margin: 1rem;
+                padding: 1rem;
+            }
+
+            .main-header {
+                padding: 1.5rem 0.5rem;
+            }
+
+            .site-title {
+                font-size: 2.2rem;
+            }
+
+            .site-tagline {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .expression-btn {
+                padding: 0.8rem 1.5rem;
+                font-size: 1rem;
+            }
+
+            .main-action-btn {
+                padding: 1rem 2rem;
+                font-size: 1.2rem;
+            }
+
+            .expression-card {
+                padding: 1.5rem;
+            }
+
+            .expression-phrase {
+                font-size: 1.8rem;
+            }
+
+            .explanation-block h4, .example-block h4, .context-block h4 {
+                font-size: 1.2rem;
+            }
+
+            .explanation-block p, .context-block p, .examples-list li, .question-text, .user-answer-input {
+                font-size: 1rem;
+            }
+
+            .back-to-intro-btn, .next-expression-btn {
+                font-size: 1rem;
+                padding: 0.6rem 1rem;
+            }
+
+            .show-answer-btn {
+                padding: 0.7rem 1.2rem;
+                font-size: 0.9rem;
+            }
+            .language-selector {
+                top: 0.5rem;
+                right: 0.5rem;
+            }
+            .lang-button {
+                padding: 0.4rem 0.6rem;
+                font-size: 0.8rem;
+            }
+            .matching-column {
+                min-width: unset; /* Allow columns to shrink more on very small screens */
+                flex-basis: 100%; /* Stack columns vertically */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .site-title {
+                font-size: 1.8rem;
+            }
+
+            .site-tagline {
+                font-size: 0.9rem;
+            }
+
+            .expression-list {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .expression-btn {
+                width: 90%;
+            }
+
+            .main-action-btn {
+                width: 90%;
+                font-size: 1.1rem;
+                padding: 0.8rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <h1 class="site-title" id="site-title"><i class="fas fa-comments"></i> Português Expressivo</h1>
+        <p class="site-tagline" id="site-tagline">Desvende o verdadeiro português do dia a dia!</p>
+        <div class="language-selector">
+            <button id="lang-pt-btn" class="lang-button active">PT</button>
+            <button id="lang-en-btn" class="lang-button">EN</button>
+        </div>
+    </header>
+
+    <main class="content-area">
+
+        <!-- SEÇÃO 1: Introdução e Visão Geral das Expressões -->
+        <section id="intro-section" class="section active">
+            <h2 class="section-title" id="intro-section-title">Olá! Prepare-se para aprender 5 novas expressões!</h2>
+            <div class="introduction-text">
+                <p id="intro-text1" class="section-text">Nesta seção, vamos explorar juntos cinco expressões muito comuns no português brasileiro. Entender o contexto e o significado delas fará uma grande diferença na sua fluência e na sua capacidade de se comunicar como um nativo.</p>
+                <p id="intro-text2" class="section-text">Clique nas expressões abaixo para saber mais sobre cada uma:</p>
+            </div>
+            <div class="expression-list">
+                <!-- Os botões das expressões serão gerados dinamicamente aqui pelo JavaScript -->
+            </div>
+            <button id="start-practice-btn" class="main-action-btn">
+                <i class="fas fa-pencil-alt"></i> <span id="start-practice-btn-text">Vamos praticar!</span>
+            </button>
+        </section>
+
+        <!-- SEÇÃO 2: Detalhe Individual da Expressão -->
+        <section id="expression-detail-section" class="section hidden">
+            <button class="back-to-intro-btn">
+                <i class="fas fa-arrow-left"></i> <span id="back-to-intro-btn-text">Voltar</span>
+            </button>
+            <div class="expression-card">
+                <h3 class="expression-phrase"></h3> <!-- Ex: "Dar uma mão" -->
+                <div class="english-alternatives-container hidden"></div>
+                <div class="explanation-block">
+                    <h4><i class="fas fa-lightbulb"></i> <span id="meaning-title">Significado:</span></h4>
+                    <p class="meaning"></p>
+                </div>
+                <div class="example-block">
+                    <h4><i class="fas fa-quote-left"></i> <span id="examples-title">Exemplos:</span></h4>
+                    <ul class="examples-list">
+                        <!-- Exemplos serão populados dinamicamente -->
+                    </ul>
+                </div>
+                <div class="context-block">
+                    <h4><i class="fas fa-info-circle"></i> <span id="context-title">Contexto de Uso:</span></h4>
+                    <p class="context-explanation"></p>
+                </div>
+            </div>
+            <button class="next-expression-btn">
+                <span id="next-expression-btn-text">Próxima Expressão</span> <i class="fas fa-arrow-right"></i>
+            </button>
+        </section>
+
+        <!-- SEÇÃO 3: Seção de Prática -->
+        <section id="practice-section" class="section hidden">
+            <h2 class="section-title" id="practice-section-title">Hora de Praticar!</h2>
+            <div class="exercise-type-selector">
+                <button id="fill-in-blanks-btn" class="exercise-type-btn active">
+                    <i class="fas fa-edit"></i> <span id="fill-in-blanks-btn-text">Completar Frases</span>
+                </button>
+                <button id="translation-btn" class="exercise-type-btn">
+                    <i class="fas fa-language"></i> <span id="translation-btn-text">Tradução</span>
+                </button>
+                <button id="matching-btn" class="exercise-type-btn">
+                    <i class="fas fa-puzzle-piece"></i> <span id="matching-btn-text">Correspondência</span>
+                </button>
+            </div>
+
+            <!-- Sub-seções de exercícios -->
+            <div id="fill-in-blanks-container" class="practice-questions-container">
+                <!-- As perguntas de prática serão geradas dinamicamente aqui -->
+            </div>
+
+            <div id="translation-container" class="hidden">
+                <!-- Exercícios de tradução serão gerados aqui -->
+            </div>
+
+            <div id="matching-container" class="hidden">
+                <!-- Exercícios de correspondência serão gerados aqui -->
+            </div>
+
+            <button id="restart-expressions-btn" class="main-action-btn hidden">
+                <i class="fas fa-sync-alt"></i> <span id="restart-expressions-btn-text">Começar Novamente</span>
+            </button>
+            <button id="load-new-expressions-btn" class="main-action-btn hidden">
+                <i class="fas fa-plus-circle"></i> <span id="load-new-expressions-btn-text">Carregar Novas Expressões</span>
+            </button>
+        </section>
+
+    </main>
+
+    <footer class="main-footer">
+        <p id="footer-text1">&copy; 2025 Expressive Portuguese. All rights reserved.</p>
+        <p id="footer-text2">Developed by Daby</p>
+    </footer>
+
+    <script>
+        // data.js
+        // Este arquivo contém os dados das expressões.
+        // Você pode facilmente adicionar novos conjuntos de 5 expressões aqui.
+
+        const expressionSets = [
+            // --- Conjunto de Expressões 1: Básico ---
+            {
+                id: "set1",
+                name: "Básico",
+                name_en: "Basic",
+                expressions: [
+                    {
+                        id: "exp1_1",
+                        phrase: "Dar uma mão",
+                        phrase_en: "Lend a hand",
+                        pt_equivalent_for_en: "(Dar uma mão)",
+                        english_alternatives: [
+                            { expr: "Help out", freq: "90%" },
+                            { expr: "Give a hand", freq: "85%" },
+                            { expr: "Assist", freq: "75%" }
+                        ],
+                        meaning: "Ajudar alguém, oferecer auxílio. (To help someone, to offer assistance.)", // Mixed PT/EN
+                        meaning_en: "To provide assistance or support. (Ajudar ou oferecer auxílio.)", // Brief PT explanation
+                        examples: [
+                            "Estou com dificuldades (I'm struggling) para carregar as compras. Você pode me **dar uma mão** (lend a hand)?",
+                            "Se todos no projeto **dessem uma mão** (lent a hand), terminaríamos mais rápido.",
+                            "Ele sempre está disposto a **dar uma mão** (lend a hand) aos colegas."
+                        ],
+                        examples_en: [
+                            "I'm struggling to carry the groceries. Can you **<u>lend me a hand</u>** (dar uma mão)?",
+                            "If everyone on the project **<u>lent a hand</u>** (dessem uma mão), we'd finish faster.",
+                            "He's always willing to **<u>lend a hand</u>** (dar uma mão) to his colleagues."
+                        ],
+                        context: "Usada em situações informais para pedir ou oferecer ajuda. É uma expressão muito comum e amigável, indicando colaboração.",
+                        context_en: "Used in informal situations to ask for or offer help. It's a very common and friendly expression, indicating collaboration.",
+                        practice_questions: [
+                            {
+                                question_pt: "Não consigo terminar este projeto sozinho. Preciso que você me ______.",
+                                correct_answer_pt: "dê uma mão",
+                                question_en: "I can't finish this project alone. I need you to ______.",
+                                correct_answer_en: "lend a hand"
+                            },
+                            {
+                                question_pt: "Ela sempre ______ aos vizinhos quando precisam de ajuda.",
+                                correct_answer_pt: "dá uma mão",
+                                question_en: "She always ______ to her neighbors when they need help.",
+                                correct_answer_en: "lends a hand"
+                            }
+                        ]
+                    },
+                    {
+                        id: "exp1_2",
+                        phrase: "Pisar na bola",
+                        phrase_en: "To mess up",
+                        pt_equivalent_for_en: "(Pisar na bola)",
+                        english_alternatives: [
+                            { expr: "To screw up (could be offensive)", freq: "80%" },
+                            { expr: "To make a mistake", freq: "95%" },
+                            { expr: "To blunder", freq: "60%" },
+                            { expr: "To fuck up (could be offensive)", freq: "80%" }
+                        ],
+                        meaning: "Cometer um erro, falhar, fazer algo errado ou decepcionante. (To make a mistake, fail, or do something disappointing.)",
+                        meaning_en: "To make a significant mistake or perform poorly. (Cometer um erro grave ou ter um desempenho ruim.)",
+                        examples: [
+                            "O jogador errou um pênalti crucial. Ele **pisou na bola** (messed up) feio.",
+                            "Não quero **pisar na bola** (mess up) novamente, então vou me preparar bem para a apresentação.",
+                            "O time **pisou na bola** (messed up) no final do jogo e perdeu a vitória que parecia certa."
+                        ],
+                        examples_en: [
+                            "The player missed a crucial penalty. He **<u>messed up</u>** (pisou na bola) badly.",
+                            "I don't want to **<u>mess up</u>** (pisar na bola) again, so I'll prepare well for the presentation.",
+                            "The team **<u>messed up</u>** (pisou na bola) at the end of the game and lost the seemingly certain victory."
+                        ],
+                        context: "Geralmente usada para indicar que alguém agiu de forma inadequada, cometeu um erro que causou algum tipo de problema, constrangimento ou decepção.",
+                        context_en: "Generally used to indicate that someone acted inappropriately, made a mistake that caused some kind of problem, embarrassment, or disappointment.",
+                        practice_questions: [
+                            {
+                                question_pt: "O jogador _______ e perdeu um gol incrível no último minuto.",
+                                correct_answer_pt: "pisou na bola",
+                                question_en: "The player _______ and missed an incredible goal in the last minute.",
+                                correct_answer_en: "messed up"
+                            },
+                            {
+                                question_pt: "Se você não estudar, vai _______ na prova.",
+                                correct_answer_pt: "pisar na bola",
+                                question_en: "If you don't study, you will _______ on the test.",
+                                correct_answer_en: "mess up"
+                            }
+                        ]
+                    },
+                    {
+                        id: "exp1_3",
+                        phrase: "Ficar de olho",
+                        phrase_en: "Keep an eye on",
+                        pt_equivalent_for_en: "(Ficar de olho)",
+                        english_alternatives: [
+                            { expr: "Watch over", freq: "85%" },
+                            { expr: "Look after", freq: "90%" }
+                        ],
+                        meaning: "Vigiar, prestar atenção, observar com cuidado. (To watch, pay attention, or observe carefully.)",
+                        meaning_en: "To observe or watch something/someone carefully. (Observar ou vigiar algo/alguém com atenção.)",
+                        examples: [
+                            "Por favor, **fique de olho** (keep an eye on) nas crianças enquanto eu vou ao mercado.",
+                            "Vou **ficar de olho** (keep an eye on) nas promoções para comprar a passagem barata para as férias.",
+                            "É bom **ficar de olho** (keep an eye on) nas notícias para saber o que está acontecendo no mundo."
+                        ],
+                        examples_en: [
+                            "Please, **<u>keep an eye on</u>** (ficar de olho) the children while I go to the market.",
+                            "I'll **<u>keep an eye on</u>** (ficar de olho) the promotions to buy a cheap ticket for the holidays.",
+                            "It's good to **<u>keep an eye on</u>** (ficar de olho) the news to know what's happening in the world."
+                        ],
+                        context: "Usada para indicar a necessidade de vigilância ou atenção a algo ou alguém, seja para proteger, observar oportunidades ou monitorar uma situação.",
+                        context_en: "Used to indicate the need for vigilance or attention to something or someone, whether to protect, observe opportunities, or monitor a situation.",
+                        practice_questions: [
+                            {
+                                question_pt: "Enquanto eu saio, você pode _______ na casa para mim?",
+                                correct_answer_pt: "ficar de olho",
+                                question_en: "While I'm out, can you _______ the house for me?",
+                                correct_answer_en: "keep an eye on"
+                            },
+                            {
+                                question_pt: "O guarda noturno precisa _______ em tudo que acontece.",
+                                correct_answer_pt: "ficar de olho",
+                                question_en: "The night guard needs to _______ on everything that happens.",
+                                correct_answer_en: "keep an eye on"
+                            }
+                        ]
+                    },
+                    {
+                        id: "exp1_4",
+                        phrase: "Quebrar o galho",
+                        phrase_en: "To do the trick",
+                        pt_equivalent_for_en: "(Quebrar o galho)",
+                        english_alternatives: [
+                            { expr: "To make do", freq: "90%" },
+                            { expr: "To tide over", freq: "70%" },
+                            { expr: "To get by", freq: "80%" }
+                        ],
+                        meaning: "Resolver um problema de forma improvisada, ajudar em uma situação difícil, fazer um favor rápido. (To solve a problem temporarily, help in a difficult situation, or do a quick favor.)",
+                        meaning_en: "To be sufficient for a particular purpose, often temporarily or as an improvised solution. (Ser suficiente para um propósito, muitas vezes temporariamente ou como solução improvisada.) **Observation:** In Portuguese, 'Quebrar o galho' is very versatile and can be used in many different contexts, such as 'Quebrar *seu* galho' (to help *you* out, to do *you* a favor).",
+                        examples: [
+                            "Meu carro quebrou, mas um amigo me emprestou o dele para **quebrar o galho** (do the trick) até o conserto.",
+                            "Essa ferramenta velha vai **quebrar o galho** (do the trick) até eu comprar uma nova e melhor.",
+                            "Você pode me emprestar seu carregador? O meu estragou e preciso **quebrar o galho** (do the trick) para o celular não morrer."
+                        ],
+                        examples_en: [
+                            "My car broke down, but a friend lent me his to **<u>do the trick</u>** (quebrar o galho) until it's fixed.",
+                            "This old tool will **<u>do the trick</u>** (quebrar o galho) until I buy a new and better one.",
+                            "Can you lend me your charger? Mine broke and I need to **<u>do the trick</u>** (quebrar o galho) so my phone doesn't die."
+                        ],
+                        context: "Expressão muito comum para descrever uma solução temporária ou improvisada para um problema, ou um pequeno favor que ajuda alguém a sair de uma situação complicada.",
+                        context_en: "A very common expression to describe a temporary or improvised solution to a problem, or a small favor that helps someone out of a difficult situation.",
+                        practice_questions: [
+                            {
+                                question_pt: "Não tenho a ferramenta certa, mas esta aqui vai _______ por enquanto.",
+                                correct_answer_pt: "quebrar o galho",
+                                question_en: "I don't have the right tool, but this one will _______ for now.",
+                                correct_answer_en: "do the trick"
+                            },
+                            {
+                                question_pt: "Ele me _______ me dando uma carona para o trabalho.",
+                                correct_answer_pt: "quebrou o galho",
+                                question_en: "He _______ by giving me a ride to work.",
+                                correct_answer_en: "did the trick"
+                            }
+                        ]
+                    },
+                    {
+                        id: "exp1_5",
+                        phrase: "Cair a ficha",
+                        phrase_en: "The penny drops",
+                        pt_equivalent_for_en: "(Cair a ficha)",
+                        english_alternatives: [
+                            { expr: "It clicked", freq: "90%" },
+                            { expr: "It hit me!", freq: "85%" },
+                            { expr: "To realize", freq: "95%" }
+                        ],
+                        meaning: "Entender algo de repente, perceber a verdade ou a realidade de uma situação. (To suddenly understand something, or realize the truth of a situation.)",
+                        meaning_en: "To suddenly understand or realize something after a period of confusion or not knowing. (Entender ou perceber algo de repente após um período de confusão.)",
+                        examples: [
+                            "Ele explicou várias vezes, mas só depois de muito tempo a **ficha caiu** (the penny dropped) para mim.",
+                            "Quando vi a expressão dela, a **ficha caiu** (the penny dropped): ela estava mentindo o tempo todo.",
+                            "Demorou, mas finalmente a **ficha caiu** (the penny dropped) sobre a importância de estudar para o futuro."
+                        ],
+                        examples_en: [
+                            "He explained several times, but only after a long time did **<u>the penny drop</u>** (cair a ficha) for me.",
+                            "When I saw her expression, **<u>the penny dropped</u>** (cair a ficha): she had been lying the whole time.",
+                            "It took a while, but finally **<u>the penny dropped</u>** (cair a ficha) about the importance of studying for the future."
+                        ],
+                        context: "Usada para descrever o momento em que alguém tem um 'insight' ou uma epifania, compreendendo algo que antes não estava claro, como a verdade de uma situação ou a gravidade de um problema.",
+                        context_en: "Used to describe the moment when someone has an 'insight' or an epiphany, understanding something that was previously unclear, such as the truth of a situation or the seriousness of a problem.",
+                        practice_questions: [
+                            {
+                                question_pt: "Ele só entendeu a gravidade da situação quando a _______.",
+                                correct_answer_pt: "ficha caiu",
+                                question_en: "He only understood the seriousness of the situation when _______.",
+                                correct_answer_en: "the penny dropped"
+                            },
+                            {
+                                question_pt: "Depois de horas tentando resolver o problema, finalmente ______.",
+                                correct_answer_pt: "a ficha caiu",
+                                question_en: "After hours of trying to solve the problem, finally ______.",
+                                correct_answer_en: "the penny dropped"
+                            }
+                        ]
+                    }
+                ],
+                translation_exercises: [
+                    {
+                        id: "trans_1",
+                        phrase_pt: "Você pode me dar uma mão com isso?",
+                        correct_answer_en: "Can you lend me a hand with this?",
+                        phrase_en: "He really messed up the presentation.",
+                        correct_answer_pt: "Ele pisou na bola na apresentação."
+                    },
+                    {
+                        id: "trans_2",
+                        phrase_pt: "Preciso ficar de olho nas crianças.",
+                        correct_answer_en: "I need to keep an eye on the children.",
+                        phrase_en: "This solution will do the trick for now.",
+                        correct_answer_pt: "Essa solução vai quebrar o galho por enquanto."
+                    },
+                    {
+                        id: "trans_3",
+                        phrase_pt: "Finalmente a ficha caiu para ele.",
+                        correct_answer_en: "Finally the penny dropped for him.",
+                        phrase_en: "She always helps out her friends.",
+                        correct_answer_pt: "Ela sempre dá uma mão aos amigos."
+                    },
+                    {
+                        id: "trans_4",
+                        phrase_pt: "Não pise na bola de novo!",
+                        correct_answer_en: "Don't mess up again!",
+                        phrase_en: "It took a while for the penny to drop.",
+                        correct_answer_pt: "Demorou um pouco para a ficha cair."
+                    },
+                    {
+                        id: "trans_5",
+                        phrase_pt: "Ele quebrou meu galho me emprestando o carro.",
+                        correct_answer_en: "He did me a favor by lending me his car.",
+                        phrase_en: "Keep an eye on the oven.",
+                        correct_answer_pt: "Fique de olho no forno."
+                    },
+                    {
+                        id: "trans_6",
+                        phrase_pt: "A ficha dela caiu quando viu a verdade.",
+                        correct_answer_en: "The penny dropped for her when she saw the truth.",
+                        phrase_en: "Can you give me a hand with this box?",
+                        correct_answer_pt: "Você pode me dar uma mão com esta caixa?"
+                    }
+                ],
+                matching_exercises: [
+                    {
+                        id: "match_1",
+                        pairs: [
+                            { pt: "Dar uma mão", en: "Lend a hand" },
+                            { pt: "Pisar na bola", en: "To mess up" },
+                            { pt: "Ficar de olho", en: "Keep an eye on" },
+                            { pt: "Quebrar o galho", en: "To do the trick" },
+                            { pt: "Cair a ficha", en: "The penny drops" }
+                        ]
+                    }
+                ]
+            }
+        ];
+
+        // Função auxiliar para obter um conjunto de expressões pelo ID.
+        // Se nenhum ID for fornecido ou encontrado, retorna o primeiro conjunto.
+        function getCurrentExpressionSet(setId) {
+            return expressionSets.find(set => set.id === setId) || expressionSets[0];
+        }
+
+        // app.js
+        // Este arquivo contém a lógica JavaScript para a interatividade do site.
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Seleciona os elementos principais das seções do site
+            const introSection = document.getElementById('intro-section');
+            const expressionDetailSection = document.getElementById('expression-detail-section');
+            const practiceSection = document.getElementById('practice-section');
+
+            // Elementos da seção de Introdução
+            const expressionListDiv = document.querySelector('.expression-list');
+            const startPracticeBtn = document.getElementById('start-practice-btn');
+
+            // Elementos da seção de Detalhe da Expressão
+            const backToIntroBtn = document.querySelector('#expression-detail-section .back-to-intro-btn');
+            const detailPhrase = document.querySelector('#expression-detail-section .expression-phrase');
+            const englishAlternativesContainer = document.querySelector('#expression-detail-section .english-alternatives-container');
+            const detailMeaning = document.querySelector('#expression-detail-section .meaning');
+            const detailExamplesList = document.querySelector('#expression-detail-section .examples-list');
+            const detailContext = document.querySelector('#expression-detail-section .context-explanation');
+            const nextExpressionBtn = document.querySelector('#expression-detail-section .next-expression-btn');
+
+            // Elementos da seção de Prática
+            const fillInBlanksContainer = document.getElementById('fill-in-blanks-container');
+            const translationContainer = document.getElementById('translation-container');
+            const matchingContainer = document.getElementById('matching-container');
+
+            const restartExpressionsBtn = document.getElementById('restart-expressions-btn');
+            const loadNewExpressionsBtn = document.getElementById('load-new-expressions-btn');
+
+            // Botões de idioma
+            const langPtBtn = document.getElementById('lang-pt-btn');
+            const langEnBtn = document.getElementById('lang-en-btn');
+
+            // Botões de tipo de exercício
+            const fillInBlanksBtn = document.getElementById('fill-in-blanks-btn');
+            const translationBtn = document.getElementById('translation-btn');
+            const matchingBtn = document.getElementById('matching-btn');
+
+            // Variáveis de estado da aplicação
+            let currentSetId = "set1";
+            let currentExpressionSet = getCurrentExpressionSet(currentSetId);
+            let currentExpressionIndex = 0;
+            let currentLanguage = 'pt'; // Idioma padrão
+            let currentExerciseType = 'fill-in-blanks'; // Tipo de exercício padrão
+
+            // Objeto de traduções para todos os textos estáticos e dinâmicos
+            const translations = {
+                pt: {
+                    pageTitle: "Português Expressivo - Aprenda Novas Expressões!",
+                    siteTitle: "Português Expressivo",
+                    siteTagline: "Desvende o verdadeiro português do dia a dia!",
+                    introSectionTitle: "Olá! Prepare-se para aprender 5 novas expressões!",
+                    introText1: "Nesta seção, vamos explorar juntos cinco expressões muito comuns no português brasileiro. Entender o contexto e o significado delas fará uma grande diferença na sua fluência e na sua capacidade de se comunicar como um nativo.",
+                    introText2: "Clique nas expressões abaixo para saber mais sobre cada uma:",
+                    startPracticeBtn: "Vamos praticar!",
+                    detailSectionTitle: "Detalhe da Expressão",
+                    meaningTitle: "Significado:",
+                    examplesTitle: "Exemplos:",
+                    contextTitle: "Contexto de Uso:",
+                    backBtn: "Voltar",
+                    nextBtn: "Próxima Expressão",
+                    goToPracticeBtn: "Ir para a Prática!",
+                    practiceSectionTitle: "Hora de Praticar!",
+                    practiceInstructions: "Complete as frases abaixo com a expressão mais adequada. Pense bem antes de revelar a resposta!",
+                    showAnswerBtn: "Mostrar Resposta",
+                    correctAnswerPrefix: "Resposta Correta:",
+                    feedbackCorrect: "Excelente! Você acertou!",
+                    feedbackIncorrect: "Quase lá! Reveja a expressão.",
+                    restartBtn: "Começar Novamente",
+                    loadNewBtn: "Carregar Novas Expressões",
+                    footerText1: "&copy; 2025 Expressive Portuguese. All rights reserved.",
+                    footerText2: "Developed by Daby",
+                    fillInBlanksBtn: "Completar Frases",
+                    translationBtn: "Tradução",
+                    matchingBtn: "Correspondência",
+                    checkAnswersBtn: "Verificar Respostas",
+                    translationInstructions: "Traduza as frases abaixo:",
+                    matchingInstructions: "Arraste e solte as expressões em português para suas equivalentes em inglês."
+                },
+                en: {
+                    pageTitle: "Expressive Portuguese - Learn New Expressions!",
+                    siteTitle: "Expressive Portuguese",
+                    siteTagline: "Uncover real everyday Portuguese!",
+                    introSectionTitle: "Hello! Get ready to learn 5 new expressions!",
+                    introText1: "In this section, we will explore five very common expressions in Brazilian Portuguese. Understanding their context and meaning will make a big difference in your fluency and your ability to communicate like a native speaker.",
+                    introText2: "Click on the expressions below to learn more about each one:",
+                    startPracticeBtn: "Let's practice!",
+                    detailSectionTitle: "Expression Details",
+                    meaningTitle: "Meaning:",
+                    examplesTitle: "Examples:",
+                    contextTitle: "Usage Context:",
+                    backBtn: "Back",
+                    nextBtn: "Next Expression",
+                    goToPracticeBtn: "Go to Practice!",
+                    practiceSectionTitle: "Time to Practice!",
+                    practiceInstructions: "Complete the sentences below with the most appropriate expression. Think carefully before revealing the answer!",
+                    showAnswerBtn: "Show Answer",
+                    correctAnswerPrefix: "Correct Answer:",
+                    feedbackCorrect: "Excellent! You got it right!",
+                    feedbackIncorrect: "Almost there! Review the expression.",
+                    restartBtn: "Start Over",
+                    loadNewBtn: "Load New Expressions",
+                    footerText1: "&copy; 2025 Expressive Portuguese. All rights reserved.",
+                    footerText2: "Developed by Daby",
+                    fillInBlanksBtn: "Fill in the Blanks",
+                    translationBtn: "Translation",
+                    matchingBtn: "Matching",
+                    checkAnswersBtn: "Check Answers",
+                    translationInstructions: "Translate the sentences below:",
+                    matchingInstructions: "Drag and drop the Portuguese expressions to their English equivalents."
+                }
+            };
+
+            /**
+             * Exibe uma seção específica do site e esconde as outras.
+             * Adiciona/remove classes para controlar a visibilidade e transições CSS.
+             * @param {HTMLElement} section O elemento da seção a ser exibida.
+             */
+            function showSection(section) {
+                // Esconde todas as seções
+                document.querySelectorAll('.section').forEach(sec => {
+                    sec.classList.remove('active');
+                    sec.classList.add('hidden');
+                });
+                // Exibe a seção desejada
+                section.classList.remove('hidden');
+                section.classList.add('active');
+            }
+
+            /**
+             * Atualiza todo o conteúdo da página para o idioma selecionado.
+             * @param {string} lang O código do idioma ('pt' ou 'en').
+             */
+            function updateContentLanguage(lang) {
+                currentLanguage = lang;
+
+                // Update page title
+                const pageTitleElement = document.getElementById('page-title');
+                if (pageTitleElement) pageTitleElement.textContent = translations[lang].pageTitle;
+
+                // Update header
+                const siteTitleElement = document.getElementById('site-title');
+                if (siteTitleElement) siteTitleElement.innerHTML = `<i class="fas fa-comments"></i> ${translations[lang].siteTitle}`;
+
+                const siteTaglineElement = document.getElementById('site-tagline');
+                if (siteTaglineElement) siteTaglineElement.textContent = translations[lang].siteTagline;
+
+                // Update introduction section
+                const introSectionTitleElement = document.getElementById('intro-section-title');
+                if (introSectionTitleElement) introSectionTitleElement.textContent = translations[lang].introSectionTitle;
+
+                const introText1Element = document.getElementById('intro-text1');
+                if (introText1Element) introText1Element.textContent = translations[lang].introText1;
+
+                const introText2Element = document.getElementById('intro-text2');
+                if (introText2Element) introText2Element.textContent = translations[lang].introText2;
+
+                const startPracticeBtnTextElement = document.getElementById('start-practice-btn-text');
+                if (startPracticeBtnTextElement) startPracticeBtnTextElement.textContent = translations[lang].startPracticeBtn;
+
+                // Update detail section static texts (titles)
+                const backToIntroBtnTextElement = document.getElementById('back-to-intro-btn-text');
+                if (backToIntroBtnTextElement) backToIntroBtnTextElement.textContent = translations[lang].backBtn;
+
+                const meaningTitleElement = document.getElementById('meaning-title');
+                if (meaningTitleElement) meaningTitleElement.textContent = translations[lang].meaningTitle;
+
+                const examplesTitleElement = document.getElementById('examples-title');
+                if (examplesTitleElement) examplesTitleElement.textContent = translations[lang].examplesTitle;
+
+                const contextTitleElement = document.getElementById('context-title');
+                if (contextTitleElement) contextTitleElement.textContent = translations[lang].contextTitle;
+
+                // Update practice section static texts (titles and buttons)
+                const practiceSectionTitleElement = document.getElementById('practice-section-title');
+                if (practiceSectionTitleElement) practiceSectionTitleElement.textContent = translations[lang].practiceSectionTitle;
+
+                const practiceInstructionsTextElement = document.getElementById('practice-instructions-text');
+                if (practiceInstructionsTextElement) practiceInstructionsTextElement.textContent = translations[lang].practiceInstructions;
+
+                const restartExpressionsBtnTextElement = document.getElementById('restart-expressions-btn-text');
+                if (restartExpressionsBtnTextElement) restartExpressionsBtnTextElement.textContent = translations[lang].restartBtn;
+
+                const loadNewExpressionsBtnTextElement = document.getElementById('load-new-expressions-btn-text');
+                if (loadNewExpressionsBtnTextElement) loadNewExpressionsBtnTextElement.textContent = translations[lang].loadNewBtn;
+
+                // Update exercise type buttons
+                const fillInBlanksBtnTextElement = document.getElementById('fill-in-blanks-btn-text');
+                if (fillInBlanksBtnTextElement) fillInBlanksBtnTextElement.textContent = translations[lang].fillInBlanksBtn;
+
+                const translationBtnTextElement = document.getElementById('translation-btn-text');
+                if (translationBtnTextElement) translationBtnTextElement.textContent = translations[lang].translationBtn;
+
+                const matchingBtnTextElement = document.getElementById('matching-btn-text');
+                if (matchingBtnTextElement) matchingBtnTextElement.textContent = translations[lang].matchingBtn;
+
+                // Update footer
+                const footerText1Element = document.getElementById('footer-text1');
+                if (footerText1Element) footerText1Element.innerHTML = translations[lang].footerText1;
+
+                const footerText2Element = document.getElementById('footer-text2');
+                if (footerText2Element) footerText2Element.innerHTML = translations[lang].footerText2;
+
+                // Update language buttons active state
+                // These are already defined as const langPtBtn and langEnBtn at a higher scope
+                if (langPtBtn) langPtBtn.classList.toggle('active', lang === 'pt');
+                if (langEnBtn) langEnBtn.classList.toggle('active', lang === 'en');
+
+                // Re-populate dynamic content based on the new language
+                populateExpressionList(lang);
+                if (expressionDetailSection.classList.contains('active')) {
+                    // If detail section is active, re-render its content with current expression
+                    showExpressionDetail(currentExpressionSet.expressions[currentExpressionIndex], currentExpressionIndex);
+                }
+                if (practiceSection.classList.contains('active')) {
+                    // Re-render the current active practice sub-section
+                    if (currentExerciseType === 'fill-in-blanks') {
+                        populateFillInBlanksSection(lang);
+                    } else if (currentExerciseType === 'translation') {
+                        populateTranslationSection(lang);
+                    } else if (currentExerciseType === 'matching') {
+                        populateMatchingSection(lang);
+                    }
+                }
+            }
+
+            /**
+             * Popula a lista de botões de expressões na seção de introdução.
+             * Cada botão ao ser clicado, mostra os detalhes da expressão correspondente.
+             * @param {string} lang O idioma atual para exibir o texto do botão.
+             */
+            function populateExpressionList(lang = currentLanguage) {
+                expressionListDiv.innerHTML = ''; // Limpa botões anteriores
+                currentExpressionSet.expressions.forEach((expr, index) => {
+                    const button = document.createElement('button');
+                    button.classList.add('expression-btn', 'rounded-full');
+                    button.dataset.expressionId = expr.id;
+                    button.textContent = expr[`phrase_${lang}`] || expr.phrase; // Usa a versão traduzida ou a original
+                    button.addEventListener('click', () => showExpressionDetail(expr, index));
+                    expressionListDiv.appendChild(button);
+                });
+            }
+
+            /**
+             * Exibe os detalhes de uma expressão específica na seção de detalhes.
+             * @param {Object} expression O objeto da expressão a ser exibida.
+             * @param {number} index O índice da expressão no conjunto atual.
+             */
+            function showExpressionDetail(expression, index) {
+                currentExpressionIndex = index;
+
+                // Update phrase and alternatives
+                if (currentLanguage === 'en') {
+                    detailPhrase.textContent = expression.phrase_en;
+                    let alternativesHtml = `<p class="pt-equivalent-display">${expression.pt_equivalent_for_en}</p>`; // Portuguese equivalent
+                    if (expression.english_alternatives && expression.english_alternatives.length > 0) {
+                        alternativesHtml += `<p><strong>Common Alternatives:</strong></p><ul>`;
+                        expression.english_alternatives.forEach(alt => {
+                            alternativesHtml += `<li>${alt.expr} (${alt.freq})</li>`;
+                        });
+                        alternativesHtml += `</ul>`;
+                    }
+                    englishAlternativesContainer.innerHTML = alternativesHtml;
+                    englishAlternativesContainer.classList.remove('hidden');
+                } else {
+                    detailPhrase.textContent = expression.phrase;
+                    englishAlternativesContainer.innerHTML = '';
+                    englishAlternativesContainer.classList.add('hidden');
+                }
+
+                detailMeaning.textContent = expression[`meaning_${currentLanguage}`] || expression.meaning;
+
+                // Popula a lista de exemplos
+                detailExamplesList.innerHTML = '';
+                const examplesToUse = expression[`examples_${currentLanguage}`] || expression.examples;
+                examplesToUse.forEach(example => {
+                    const li = document.createElement('li');
+                    li.innerHTML = example; // Usar innerHTML para manter o <strong> e <u>
+                    detailExamplesList.appendChild(li);
+                });
+
+                detailContext.textContent = expression[`context_${currentLanguage}`] || expression.context;
+
+                // Controla a visibilidade e texto do botão "Próxima Expressão"
+                if (currentExpressionIndex < currentExpressionSet.expressions.length - 1) {
+                    nextExpressionBtn.textContent = translations[currentLanguage].nextBtn;
+                    nextExpressionBtn.onclick = () => {
+                        currentExpressionIndex++;
+                        showExpressionDetail(currentExpressionSet.expressions[currentExpressionIndex], currentExpressionIndex);
+                    };
+                    nextExpressionBtn.classList.remove('hidden');
+                } else {
+                    nextExpressionBtn.textContent = translations[currentLanguage].goToPracticeBtn;
+                    nextExpressionBtn.onclick = () => {
+                        showSection(practiceSection);
+                        activateExerciseType('fill-in-blanks'); // Go to fill-in-blanks by default
+                    };
+                    nextExpressionBtn.classList.remove('hidden');
+                }
+
+                showSection(expressionDetailSection);
+            }
+
+            /**
+             * Popula a seção de prática com perguntas de completar frases.
+             * @param {string} lang O idioma atual para exibir as perguntas e respostas.
+             */
+            function populateFillInBlanksSection(lang = currentLanguage) {
+                fillInBlanksContainer.innerHTML = ''; // Limpa perguntas anteriores
+                let allPracticeQuestions = [];
+                currentExpressionSet.expressions.forEach(expr => {
+                    allPracticeQuestions = allPracticeQuestions.concat(expr.practice_questions);
+                });
+
+                allPracticeQuestions.forEach((q) => {
+                    const questionBlock = document.createElement('div');
+                    questionBlock.classList.add('question-block');
+
+                    const questionText = document.createElement('p');
+                    questionText.classList.add('question-text');
+                    questionText.textContent = q[`question_${lang}`] || q.question_pt;
+                    questionBlock.appendChild(questionText);
+
+                    const input = document.createElement('input');
+                    input.type = 'text';
+                    input.classList.add('user-answer-input');
+                    input.placeholder = (lang === 'en' ? 'Your answer here...' : 'Sua resposta aqui...');
+                    questionBlock.appendChild(input);
+
+                    const showAnswerBtn = document.createElement('button');
+                    showAnswerBtn.classList.add('show-answer-btn');
+                    showAnswerBtn.textContent = translations[lang].showAnswerBtn;
+                    questionBlock.appendChild(showAnswerBtn);
+
+                    const correctAnswerP = document.createElement('p');
+                    correctAnswerP.classList.add('correct-answer', 'hidden'); // Ensure it's hidden initially
+                    // Changed to always display English answer for fill-in-blanks
+                    correctAnswerP.innerHTML = `<strong>${translations[lang].correctAnswerPrefix}</strong> ${q.correct_answer_en}`;
+                    questionBlock.appendChild(correctAnswerP);
+
+                    const feedbackP = document.createElement('p');
+                    feedbackP.classList.add('answer-feedback', 'hidden'); // Ensure it's hidden initially
+                    questionBlock.appendChild(feedbackP);
+
+                    // Adiciona listener para o botão "Mostrar Resposta"
+                    showAnswerBtn.addEventListener('click', () => {
+                        correctAnswerP.classList.remove('hidden'); // Remove 'hidden' to show the answer
+                        const userAnswer = input.value.trim().toLowerCase();
+                        const correctAns = (q.correct_answer_en).toLowerCase(); // Compare with English answer
+
+                        // Compara a resposta e dá feedback
+                        if (userAnswer === correctAns) {
+                            feedbackP.textContent = translations[lang].feedbackCorrect;
+                            feedbackP.classList.add('correct');
+                            feedbackP.classList.remove('incorrect');
+                        } else {
+                            feedbackP.textContent = translations[lang].feedbackIncorrect;
+                            feedbackP.classList.add('incorrect');
+                            feedbackP.classList.remove('correct');
+                        }
+                        feedbackP.classList.remove('hidden');
+                        input.disabled = true;
+                        showAnswerBtn.disabled = true;
+                    });
+
+                    fillInBlanksContainer.appendChild(questionBlock);
+                });
+                // Exibe os botões de controle da seção de prática
+                restartExpressionsBtn.classList.remove('hidden');
+                loadNewExpressionsBtn.classList.remove('hidden');
+
+                // Hide other exercise containers
+                translationContainer.classList.add('hidden');
+                matchingContainer.classList.add('hidden');
+                fillInBlanksContainer.classList.remove('hidden');
+            }
+
+            /**
+             * Popula a seção de prática com exercícios de tradução.
+             * @param {string} lang O idioma atual para exibir as perguntas e respostas.
+             */
+            function populateTranslationSection(lang = currentLanguage) {
+                translationContainer.innerHTML = '';
+                const instructions = document.createElement('p');
+                instructions.classList.add('practice-instructions');
+                instructions.textContent = translations[lang].translationInstructions;
+                translationContainer.appendChild(instructions);
+
+                currentExpressionSet.translation_exercises.forEach(exercise => {
+                    const block = document.createElement('div');
+                    block.classList.add('translation-exercise-block');
+
+                    const phraseToTranslate = document.createElement('p');
+                    phraseToTranslate.classList.add('phrase-to-translate');
+                    // Display PT phrase if current language is EN, and EN phrase if current language is PT
+                    phraseToTranslate.textContent = lang === 'pt' ? `"${exercise.phrase_en}"` : `"${exercise.phrase_pt}"`;
+                    block.appendChild(phraseToTranslate);
+
+                    const input = document.createElement('input');
+                    input.type = 'text';
+                    input.classList.add('user-answer-input');
+                    input.placeholder = (lang === 'en' ? 'Your translation here...' : 'Sua tradução aqui...');
+                    block.appendChild(input);
+
+                    const showAnswerBtn = document.createElement('button');
+                    showAnswerBtn.classList.add('show-answer-btn');
+                    showAnswerBtn.textContent = translations[lang].showAnswerBtn;
+                    block.appendChild(showAnswerBtn);
+
+                    const correctAnswerP = document.createElement('p');
+                    correctAnswerP.classList.add('correct-answer', 'hidden');
+                    correctAnswerP.innerHTML = `<strong>${translations[lang].correctAnswerPrefix}</strong> ${lang === 'pt' ? exercise.correct_answer_pt : exercise.correct_answer_en}`;
+                    block.appendChild(correctAnswerP);
+
+                    const feedbackP = document.createElement('p');
+                    feedbackP.classList.add('answer-feedback', 'hidden');
+                    block.appendChild(feedbackP);
+
+                    showAnswerBtn.addEventListener('click', () => {
+                        correctAnswerP.classList.remove('hidden');
+                        const userAnswer = input.value.trim().toLowerCase();
+                        const correctAns = (lang === 'pt' ? exercise.correct_answer_pt : exercise.correct_answer_en).toLowerCase();
+
+                        if (userAnswer === correctAns) {
+                            feedbackP.textContent = translations[lang].feedbackCorrect;
+                            feedbackP.classList.add('correct');
+                            feedbackP.classList.remove('incorrect');
+                        } else {
+                            feedbackP.textContent = translations[lang].feedbackIncorrect;
+                            feedbackP.classList.add('incorrect');
+                            feedbackP.classList.remove('correct');
+                        }
+                        feedbackP.classList.remove('hidden');
+                        input.disabled = true;
+                        showAnswerBtn.disabled = true;
+                    });
+                    translationContainer.appendChild(block);
+                });
+
+                // Hide other exercise containers
+                fillInBlanksContainer.classList.add('hidden');
+                matchingContainer.classList.add('hidden');
+                translationContainer.classList.remove('hidden');
+            }
+
+            /**
+             * Popula a seção de prática com exercícios de correspondência (drag and drop).
+             * @param {string} lang O idioma atual para exibir as perguntas e respostas.
+             */
+            function populateMatchingSection(lang = currentLanguage) {
+                matchingContainer.innerHTML = '';
+                const instructions = document.createElement('p');
+                instructions.classList.add('practice-instructions');
+                instructions.textContent = translations[lang].matchingInstructions;
+                matchingContainer.appendChild(instructions);
+
+                currentExpressionSet.matching_exercises.forEach(exercise => {
+                    const matchingExerciseBlock = document.createElement('div');
+                    matchingExerciseBlock.classList.add('matching-exercise-container');
+
+                    const portugueseColumn = document.createElement('div');
+                    portugueseColumn.classList.add('matching-column');
+                    portugueseColumn.id = 'portuguese-column';
+
+                    const englishColumn = document.createElement('div');
+                    englishColumn.classList.add('matching-column');
+                    englishColumn.id = 'english-column';
+
+                    // Shuffle English phrases for random matching
+                    const shuffledEnglishPairs = [...exercise.pairs].sort(() => Math.random() - 0.5);
+
+                    exercise.pairs.forEach(pair => {
+                        // Draggable Portuguese items
+                        const ptItem = document.createElement('div');
+                        ptItem.classList.add('matching-item');
+                        ptItem.setAttribute('draggable', true);
+                        ptItem.dataset.pt = pair.pt;
+                        ptItem.dataset.en = pair.en; // Store English equivalent for matching
+                        ptItem.textContent = pair.pt;
+                        portugueseColumn.appendChild(ptItem);
+
+                        // Droppable English targets
+                        const enTarget = document.createElement('div');
+                        enTarget.classList.add('matching-target');
+                        enTarget.dataset.en = pair.en; // Store English equivalent for matching
+                        enTarget.dataset.pt = ''; // To store the dropped PT item's text
+                        enTarget.textContent = pair.en; // Display the English phrase
+                        englishColumn.appendChild(enTarget);
+                    });
+
+                    // Re-populate English targets with shuffled order to make it a real matching game
+                    englishColumn.innerHTML = '';
+                    shuffledEnglishPairs.forEach(pair => {
+                        const enTarget = document.createElement('div');
+                        enTarget.classList.add('matching-target');
+                        enTarget.dataset.en = pair.en; // Store the correct English phrase
+                        enTarget.dataset.pt = ''; // This will hold the PT phrase dropped on it
+                        enTarget.textContent = pair.en; // Display the English phrase
+                        englishColumn.appendChild(enTarget);
+                    });
+
+
+                    matchingExerciseBlock.appendChild(portugueseColumn);
+                    matchingExerciseBlock.appendChild(englishColumn);
+                    matchingContainer.appendChild(matchingExerciseBlock);
+
+                    const checkAnswersBtn = document.createElement('button');
+                    checkAnswersBtn.classList.add('matching-check-btn');
+                    checkAnswersBtn.textContent = translations[lang].checkAnswersBtn;
+                    matchingContainer.appendChild(checkAnswersBtn);
+
+                    // Drag and Drop Logic
+                    let draggedItem = null;
+
+                    portugueseColumn.querySelectorAll('.matching-item').forEach(item => {
+                        item.addEventListener('dragstart', (e) => {
+                            draggedItem = e.target;
+                            e.dataTransfer.setData('text/plain', e.target.dataset.pt); // Set data for transfer
+                            e.target.classList.add('dragging');
+                        });
+
+                        item.addEventListener('dragend', (e) => {
+                            e.target.classList.remove('dragging');
+                            draggedItem = null;
+                        });
+                    });
+
+                    englishColumn.querySelectorAll('.matching-target').forEach(target => {
+                        target.addEventListener('dragover', (e) => {
+                            e.preventDefault(); // Allow drop
+                            e.target.classList.add('hovered');
+                        });
+
+                        target.addEventListener('dragleave', (e) => {
+                            e.target.classList.remove('hovered');
+                        });
+
+                        target.addEventListener('drop', (e) => {
+                            e.preventDefault();
+                            e.target.classList.remove('hovered');
+
+                            if (draggedItem) {
+                                // Only allow dropping if the target is empty
+                                if (!e.target.dataset.pt) {
+                                    const ptText = draggedItem.dataset.pt;
+                                    const enText = draggedItem.dataset.en; // Get the correct English equivalent from the dragged item
+
+                                    // Store the dropped PT text in the target's dataset
+                                    e.target.dataset.pt = ptText;
+
+                                    // Create a visual representation of the matched item
+                                    const matchedDiv = document.createElement('div');
+                                    matchedDiv.classList.add('matched-item');
+                                    matchedDiv.textContent = ptText;
+                                    e.target.innerHTML = ''; // Clear original text
+                                    e.target.appendChild(matchedDiv);
+
+                                    // Remove the dragged item from its original column
+                                    draggedItem.remove();
+                                }
+                            }
+                        });
+                    });
+
+                    checkAnswersBtn.addEventListener('click', () => {
+                        let allCorrect = true;
+                        englishColumn.querySelectorAll('.matching-target').forEach(target => {
+                            const droppedPt = target.dataset.pt;
+                            const correctEn = target.dataset.en;
+
+                            // Find the original pair to get the correct PT for the English target
+                            const originalPair = exercise.pairs.find(p => p.en === correctEn);
+
+                            if (originalPair && droppedPt === originalPair.pt) {
+                                target.classList.add('correct');
+                                target.classList.remove('incorrect');
+                            } else {
+                                target.classList.add('incorrect');
+                                target.classList.remove('correct');
+                                allCorrect = false;
+                            }
+                        });
+
+                        if (allCorrect) {
+                            alert(translations[currentLanguage].feedbackCorrect);
+                        } else {
+                            alert(translations[currentLanguage].feedbackIncorrect);
+                        }
+                    });
+                });
+
+                // Hide other exercise containers
+                fillInBlanksContainer.classList.add('hidden');
+                translationContainer.classList.add('hidden');
+                matchingContainer.classList.remove('hidden');
+            }
+
+
+            /**
+             * Ativa a sub-seção de exercício especificada e atualiza os botões de navegação.
+             * @param {string} type O tipo de exercício a ser ativado ('fill-in-blanks', 'translation', 'matching').
+             */
+            function activateExerciseType(type) {
+                currentExerciseType = type;
+
+                // Remove 'active' class from all exercise type buttons
+                document.querySelectorAll('.exercise-type-btn').forEach(btn => btn.classList.remove('active'));
+
+                // Add 'active' class to the clicked button and populate its content
+                if (type === 'fill-in-blanks') {
+                    fillInBlanksBtn.classList.add('active');
+                    populateFillInBlanksSection(currentLanguage);
+                } else if (type === 'translation') {
+                    translationBtn.classList.add('active');
+                    populateTranslationSection(currentLanguage);
+                } else if (type === 'matching') {
+                    matchingBtn.classList.add('active');
+                    populateMatchingSection(currentLanguage);
+                }
+            }
+
+
+            // --- Listeners de Eventos ---
+
+            // Quando o botão "Vamos praticar!" é clicado
+            startPracticeBtn.addEventListener('click', () => {
+                showSection(practiceSection);
+                activateExerciseType('fill-in-blanks'); // Default to fill-in-blanks
+            });
+
+            // Quando o botão "Voltar" na seção de detalhes é clicado
+            backToIntroBtn.addEventListener('click', () => {
+                showSection(introSection);
+            });
+
+            // Quando o botão "Começar Novamente" é clicado na seção de prática
+            restartExpressionsBtn.addEventListener('click', () => {
+                // Reseta os campos de entrada e esconde as respostas na seção de prática
+                document.querySelectorAll('.user-answer-input').forEach(input => {
+                    input.value = '';
+                    input.disabled = false;
+                });
+                document.querySelectorAll('.correct-answer, .answer-feedback').forEach(p => {
+                    p.classList.add('hidden');
+                    p.classList.remove('correct', 'incorrect');
+                });
+                document.querySelectorAll('.show-answer-btn').forEach(btn => btn.disabled = false);
+                // Also reset matching exercise if it was active
+                if (currentExerciseType === 'matching') {
+                    populateMatchingSection(currentLanguage); // Re-render matching to reset
+                }
+                showSection(introSection); // Volta para a seção de introdução para revisão ou novo início
+            });
+
+            // O botão 'loadNewExpressionsBtn' agora é para carregar novos conjuntos manualmente.
+            loadNewExpressionsBtn.addEventListener('click', () => {
+                alert(translations[currentLanguage].loadNewBtn);
+            });
+
+            // Listeners para os botões de idioma
+            langPtBtn.addEventListener('click', () => updateContentLanguage('pt'));
+            langEnBtn.addEventListener('click', () => updateContentLanguage('en'));
+
+            // Listeners para os botões de tipo de exercício
+            fillInBlanksBtn.addEventListener('click', () => activateExerciseType('fill-in-blanks'));
+            translationBtn.addEventListener('click', () => activateExerciseType('translation'));
+            matchingBtn.addEventListener('click', () => activateExerciseType('matching'));
+
+            // --- Inicialização da Aplicação ---
+            updateContentLanguage(currentLanguage); // Carrega o conteúdo no idioma padrão
+            showSection(introSection); // Inicia na seção de introdução
+        });
+    </script>
+</body>
+</html>
